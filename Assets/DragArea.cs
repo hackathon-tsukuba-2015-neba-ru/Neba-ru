@@ -13,10 +13,16 @@ public class DragArea : MonoBehaviour
     float height = 0.0f;
     float accelaration = 0.0f;
 
+    Vector3 GroundStart;
+    Vector3 LegStart;
+    Vector3 BodyStart;
 
     // Use this for initialization
     void Start()
     {
+         GroundStart = GameObject.Find("Ground").transform.position;
+         LegStart = GameObject.Find("Leg").transform.position;
+        BodyStart = GameObject.Find("Body").transform.position;
 
     }
 
@@ -34,8 +40,18 @@ public class DragArea : MonoBehaviour
 
         if (height < 10.0f)
         {
+            // Move ground
             GameObject Ground = GameObject.Find("Ground");
-            Ground.transform.position = new Vector3(Ground.transform.position.x,  - 3.35f - height, 0);
+            Ground.transform.position = GroundStart + new Vector3(0,-height,0);
+            //Move Leg
+            GameObject Leg = GameObject.Find("Leg");
+            Leg.transform.position = LegStart + new Vector3(0, -height, 0);
+            // Move body and Strech
+            GameObject Body = GameObject.Find("Body");
+            Body.transform.position = BodyStart + new Vector3(0, -height/2.0f, 0);
+            Body.transform.localScale = new Vector3(0.7f,height/2.0f + 0.2f,0f);
+
+
         }
     }
 
