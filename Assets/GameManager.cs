@@ -45,5 +45,19 @@ void Update () {
 	void OnGUI() {
 		GUI.Label(new Rect(20, 20, 100, 50), endPosition.x.ToString());
 		GUI.Label(new Rect(20, 40, 100, 50), endPosition.y.ToString());
+
+		float adjustedDisplayHeight = DragArea.displayheight;
+		string meterLabel = "cm";
+
+		if (adjustedDisplayHeight >= 100.0f) {
+			adjustedDisplayHeight /= 100.0f;
+			meterLabel = "m";
+
+			if (adjustedDisplayHeight >= 1000.0f) {
+				adjustedDisplayHeight /= 1000.0f;
+				meterLabel = "km";
+			}
+		}
+		GUI.Label(new Rect(20, 160, 100, 50), adjustedDisplayHeight.ToString() + meterLabel);
 	}
 }
