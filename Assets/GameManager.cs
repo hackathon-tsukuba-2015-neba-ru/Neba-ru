@@ -3,16 +3,25 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour {
 
+    public GameObject prefab;
 	Vector3 startPosition;
 	Vector3 endPosition;
 
 	// Use this for initialization
 	void Start () {
 
-	}
+        // 納豆を生成
+        for (int i = 0; i < 32; i++)
+        {
+            // プレハブからインスタンスを生成
+            Instantiate(prefab, new Vector3(Random.Range(-0.5f,0.5f),6 + Random.Range(0f,0.1f),0), Quaternion.identity);
+            new WaitForSeconds(0.05f);
+        }
 
-	// Update is called once per frame
-	void Update () {
+}
+
+// Update is called once per frame
+void Update () {
 		// comment
         // comment by windows
 		if (Input.touchCount > 0) {
