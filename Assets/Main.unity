@@ -1310,8 +1310,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .596078455, g: .282352954, b: .0274509825, a: 1}
-  m_Sprite: {fileID: 0}
+  m_Color: {r: .800000012, g: .800000012, b: .800000012, a: 1}
+  m_Sprite: {fileID: 21300000, guid: f0dbe58edb9f7d2419dc3de2dc967fe6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1401,7 +1401,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1852249016
 Transform:
   m_ObjectHideFlags: 0
@@ -1426,9 +1426,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8afcf4314a42465c87509170b04741e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreText: {fileID: 0}
-  contentsImage: {fileID: 0}
-  contentsText: {fileID: 0}
+  scoreText: {fileID: 1918586662}
+  contentsImage: {fileID: 1897718892}
+  contentsText: {fileID: 340423852}
+  level1Sprite_1: {fileID: 21300000, guid: 077a925a75fc0d249b225749f3ba91ed, type: 3}
+  level1Sprite_2: {fileID: 21300000, guid: 2aa62593ebbe71c49aa829c664deaa08, type: 3}
+  level2Sprite_1: {fileID: 21300000, guid: 6a24d69c220ff734c8e3c8b35fc6cca5, type: 3}
+  level2Sprite_2: {fileID: 21300000, guid: 9479aadf7ee36b04fada8ab27acb40db, type: 3}
+  level2Sprite_3: {fileID: 21300000, guid: 9cbae260253c74948b409f875798d611, type: 3}
+  level2Sprite_4: {fileID: 21300000, guid: f65308e26df79d747831e87f17ca3ec9, type: 3}
+  level3Sprite: {fileID: 21300000, guid: 124fc7db1b712d94e82e9ca8dbf0a0e6, type: 3}
+  level4Sprite_1: {fileID: 21300000, guid: 1745ffef70a71af4b9dff5d16638702a, type: 3}
+  level4Sprite_2: {fileID: 21300000, guid: 9424fb87bfa065648aae28287d9d3bf2, type: 3}
 --- !u!1 &1897718890
 GameObject:
   m_ObjectHideFlags: 0
@@ -1539,12 +1548,12 @@ MonoBehaviour:
   m_Color: {r: .996078491, g: .992156923, b: .988235354, a: 1}
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
-    m_FontStyle: 0
+    m_FontSize: 20
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 1
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
