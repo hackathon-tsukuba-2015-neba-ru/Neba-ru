@@ -17,16 +17,16 @@ public class DragArea : MonoBehaviour
 
     Vector3 GroundStart;
     Vector3 LegStart;
-    Vector3 BodyStart;
+    Vector3 BodydStart;
     Vector3 HeadStart;
 
 
     // Use this for initialization
     void Start()
     {
-         GroundStart = GameObject.Find("Ground").transform.position;
-         LegStart = GameObject.Find("Leg").transform.position;
-        BodyStart = GameObject.Find("Body").transform.position;
+        GroundStart = GameObject.Find("Ground").transform.position;
+        LegStart = GameObject.Find("Leg").transform.position;
+        BodydStart = GameObject.Find("Body_d").transform.position;
         HeadStart = GameObject.Find("Head").transform.position;
     }
 
@@ -53,8 +53,7 @@ public class DragArea : MonoBehaviour
         {
             displayoffset = 2.0f - ((float)System.Math.Pow(10.0 - (double)displayheight, 2.0) / 50.0f);
         }
-
-        displayoffset = 0.0f;
+        
 
         GameObject Head = GameObject.Find("Head");
         Head.transform.position = new Vector3(0.0f, displayoffset, 0f) + HeadStart;
@@ -66,13 +65,43 @@ public class DragArea : MonoBehaviour
 
         float GettingCutRatio;
         GettingCutRatio = 0.0f;
-        float BodyPartSize;
+        
 
-        GameObject Body = GameObject.Find("Body_d");
-        BodyPartSize = (1.0f - GettingCutRatio) * 0.3f;
-        Body.transform.position = BodyStart + new Vector3(0,  (displayoffset - displayheight) / 2.0f , 0);
-        Body.transform.localScale = new Vector3(Body.transform.localScale.x, displayheight / 2.0f * 0.35f, Body.transform.localScale.z);
+        GameObject Body_d = GameObject.Find("Body_d");
+        float BodydPartSize = (1.0f - GettingCutRatio) * 0.3f * displayheight / 2.0f;
+        Body_d.transform.position = BodydStart + new Vector3(0.0f,  (displayoffset - displayheight) / 2.0f , 0);
+        Body_d.transform.localScale = new Vector3(Body_d.transform.localScale.x, BodydPartSize, 0.0f);
 
+        GameObject Body_m = GameObject.Find("Body_m") ;
+        float BodymPartSize = GettingCutRatio * displayheight / 2.0f;
+        Body_m.transform.position = Body_d.transform.position + new Vector3(0.0f, BodymPartSize / 2.0f, 0.0f);
+        Body_m.transform.localScale = new Vector3(Body_m.transform.localScale.x, BodymPartSize, Body_m.transform.localScale.z);
+
+        GameObject Body_u = GameObject.Find("Body_u");
+        float BodybPartSize = (1.0f - GettingCutRatio) * 0.7f * displayheight / 2.0f;
+        Body_u.transform.position = Body_m.transform.position + new Vector3(0.0f, BodybPartSize / 2.0f, 0.0f);
+        Body_u.transform.localScale = new Vector3(Body_u.transform.localScale.x, BodybPartSize, Body_u.transform.localScale.z);
+
+        nebari -= 0.05f;
+        if (nebari > 100f) { nebari = 100.0f; }
+        if (nebari < 0f && accelaration>0.0f)
+        {
+            //GameOver
+
+            // ちぎれる演出
+            Head = GameObject.Find("Head");
+            for (int i = 0; i < 64; i++)
+            {
+                Head.transform.position = Head.transform.position + new Vector3(0.0f, 0.1f, 0f) ;
+                Head.transform.localScale = new Vector3(Head.transform.localScale.x, Head.transform.localScale.y * 0.99f, Head.transform.localScale.z);
+
+                new WaitForSeconds(1.0f);
+            }
+            // プレハブからインスタンスを生成
+            //Instantiate(prefab, new Vector3(Random.Range(-0.5f, 0.5f), 6 + Random.Range(0f, 0.1f), 0), Quaternion.identity);
+            //new WaitForSeconds(0.05f);
+
+        }
 
     }
 
@@ -81,10 +110,10 @@ public class DragArea : MonoBehaviour
         GUI.Label(new Rect(20, 20, 100, 50), "Start : "  + startPosition.x.ToString() + "," + startPosition.y.ToString());
         GUI.Label(new Rect(20, 40, 100, 50), "End   : " + endPosition.x.ToString() + "," + endPosition.y.ToString());
         
-        GUI.Label(new Rect(20, 60, 100, 50), "DragTime   : " + DragTimeDisplay.ToString());
-        GUI.Label(new Rect(20, 80, 100, 50), "Accel   : " + accelaration.ToString());
+        GUI.Label(new Rect(20, 60, 100, 50), "Accel   : " + accelaration.ToString());
+        GUI.Label(new Rect(20, 80, 100, 50), "Nebari  : " + nebari.ToString());
     }
-    
+
 
     public void OnMouseDown()
     {
@@ -96,6 +125,7 @@ public class DragArea : MonoBehaviour
     {
         endPosition = Input.mousePosition;
         accelaration += (((float)endPosition.y - (float)startPosition.y) / DragTime)/3000f;
+        if (accelaration > 1.0f) { accelaration = 1.0f; }
         DragTimeDisplay = DragTime;
     }
 
