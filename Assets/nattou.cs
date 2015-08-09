@@ -28,5 +28,6 @@ public class nattou : MonoBehaviour
         Vector2 CurrentPosition = Input.mousePosition;
 
         GetComponent<Rigidbody2D>().AddForce(CurrentPosition - StartPosition,ForceMode2D.Impulse );
+        DragArea.nebari += 1.0f; //ほんとは混ぜてる勢いを足したい
     }
 }

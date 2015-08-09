@@ -4,6 +4,7 @@ using System.Collections;
 public class DragArea : MonoBehaviour
 {
 
+    public static float nebari;
 
     Vector3 startPosition;
     Vector3 endPosition;
@@ -16,6 +17,8 @@ public class DragArea : MonoBehaviour
     Vector3 GroundStart;
     Vector3 LegStart;
     Vector3 BodyStart;
+    Vector3 HeadStart;
+
 
     // Use this for initialization
     void Start()
@@ -23,7 +26,7 @@ public class DragArea : MonoBehaviour
          GroundStart = GameObject.Find("Ground").transform.position;
          LegStart = GameObject.Find("Leg").transform.position;
         BodyStart = GameObject.Find("Body").transform.position;
-
+        HeadStart = GameObject.Find("Head").transform.position;
     }
 
     // Update is called once per frame
@@ -38,21 +41,40 @@ public class DragArea : MonoBehaviour
             height = 0.0f;
         }
 
+        float displayheight = (float)System.Math.Pow((double)height, 1.5);
+
+        GameObject Body = GameObject.Find("Body");
+        Body.transform.localScale   = new Vector3(0.0f, displayheight, 0f);
+        Body.transform.position = new Vector3(0.0f, displayheight / 2.0f, 0f) + BodyStart;
+
+        GameObject Head = GameObject.Find("Head");
+        Head.transform.position = new Vector3(0.0f, displayheight, 0f) + HeadStart;
+
+        float displayoffset = displayheight*2.0f + 5.0f;
         if (height < 10.0f)
         {
-            // Move ground
-            GameObject Ground = GameObject.Find("Ground");
-            Ground.transform.position = GroundStart + new Vector3(0,-height,0);
-            //Move Leg
-            GameObject Leg = GameObject.Find("Leg");
-            Leg.transform.position = LegStart + new Vector3(0, -height, 0);
-            // Move body and Strech
-            GameObject Body = GameObject.Find("Body");
-            Body.transform.position = BodyStart + new Vector3(0, -height/2.0f, 0);
-            Body.transform.localScale = new Vector3(0.7f,height/2.0f + 0.2f,0f);
-
-
+            displayoffset -= ( (float)System.Math.Pow(10.0 - (double)height, 2.0) / 20.0f);
         }
+
+        GameObject Ground = GameObject.Find("Ground");
+        Ground.transform.position = GroundStart + new Vector3(0,-displayoffset, 0);
+
+
+        //if (height < 10.0f)
+        //{
+        //    // Move ground
+        //    GameObject Ground = GameObject.Find("Ground");
+        //    Ground.transform.position = GroundStart + new Vector3(0,-height,0);
+        //    //Move Leg
+        //    GameObject Leg = GameObject.Find("Leg");
+        //    Leg.transform.position = LegStart + new Vector3(0, -height, 0);
+        //    // Move body and Strech
+        //    GameObject Body = GameObject.Find("Body");
+        //    Body.transform.position = BodyStart + new Vector3(0, -height/2.0f, 0);
+        //    Body.transform.localScale = new Vector3(0.7f,height/2.0f + 0.2f,0f);
+
+
+        //}
     }
 
     void OnGUI()
@@ -63,6 +85,7 @@ public class DragArea : MonoBehaviour
         GUI.Label(new Rect(20, 60, 100, 50), "DragTime   : " + DragTimeDisplay.ToString());
         GUI.Label(new Rect(20, 80, 100, 50), "Accel   : " + accelaration.ToString());
     }
+    
 
     public void OnMouseDown()
     {

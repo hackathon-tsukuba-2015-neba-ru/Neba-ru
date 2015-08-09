@@ -24,7 +24,7 @@ public class EndManager : MonoBehaviour {
 			// スコアの点数を表示するラベル、それぞれの茨城コンテンツ画像、茨城コンテンツコメントの順で。
 			// それぞれのラベルはpublicにしておいて、Unityのインスペクタから指定できるように
 			// ConfigureResultMenu(score.ToString(), Image, "a");
-			ConfigureResultMenu(score.ToString(), ,"a");
+			//ConfigureResultMenu(score.ToString(), ,"a");
 		} else if (300 <= score && score < 600) {
 			// ConfigureResultMenu(score, Image, Text);
 			ConfigureResultMenu(score.ToString(), "b");
