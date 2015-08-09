@@ -13,6 +13,7 @@ public class DragArea : MonoBehaviour
 
     float height = 0.0f;
     float accelaration = 0.0f;
+    public static float displayheight;
 
     Vector3 GroundStart;
     Vector3 LegStart;
@@ -41,20 +42,17 @@ public class DragArea : MonoBehaviour
             height = 0.0f;
         }
 
-        float displayheight = (float)System.Math.Pow((double)height, 1.5);
+        displayheight = (float)System.Math.Pow((double)height, 1.5);
 
         //GameObject Body = GameObject.Find("Body");
         //Body.transform.localScale   = new Vector3(0.0f, displayheight, 0f);
         //Body.transform.position = new Vector3(0.0f, displayheight / 2.0f, 0f) + BodyStart;
 
+
+        float displayoffset = ((float)System.Math.Pow(10.0 - (double)displayheight, 2.0) / 20.0f);
+
         GameObject Head = GameObject.Find("Head");
         Head.transform.position = new Vector3(0.0f, displayheight, 0f) + HeadStart;
-
-        float displayoffset = displayheight*2.0f + 5.0f;
-        if (displayheight < 10.0f)
-        {
-            displayoffset -= ( (float)System.Math.Pow(10.0 - (double)displayheight, 2.0) / 20.0f);
-        }
 
         GameObject Ground = GameObject.Find("Ground");
         Ground.transform.position = GroundStart + new Vector3(0,-displayoffset, 0);

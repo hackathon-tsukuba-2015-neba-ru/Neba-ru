@@ -37,6 +37,7 @@ void Update () {
 					endPosition = touch.position;
 					Debug.Log(endPosition);
 					break;
+
 			}
 		}
 	}
