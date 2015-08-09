@@ -77,10 +77,10 @@ public class DragArea : MonoBehaviour
         Body_m.transform.position = Body_d.transform.position + new Vector3(0.0f, BodymPartSize / 2.0f, 0.0f);
         Body_m.transform.localScale = new Vector3(Body_m.transform.localScale.x, BodymPartSize, Body_m.transform.localScale.z);
 
-        GameObject Body_u = GameObject.Find("Body_u");
-        float BodybPartSize = (1.0f - GettingCutRatio) * 0.7f * displayheight / 2.0f;
-        Body_u.transform.position = Body_m.transform.position + new Vector3(0.0f, BodybPartSize / 2.0f, 0.0f);
-        Body_u.transform.localScale = new Vector3(Body_u.transform.localScale.x, BodybPartSize, Body_u.transform.localScale.z);
+        //GameObject Body_u = GameObject.Find("Body_u");
+        //float BodybPartSize = (1.0f - GettingCutRatio) * 0.7f * displayheight / 2.0f;
+        //Body_u.transform.position = Body_m.transform.position + new Vector3(0.0f, BodybPartSize / 2.0f, 0.0f);
+        //Body_u.transform.localScale = new Vector3(Body_u.transform.localScale.x, BodybPartSize, Body_u.transform.localScale.z);
 
         nebari -= 0.05f;
         if (nebari > 100f) { nebari = 100.0f; }
@@ -93,7 +93,7 @@ public class DragArea : MonoBehaviour
             for (int i = 0; i < 64; i++)
             {
                 Head.transform.position = Head.transform.position + new Vector3(0.0f, 0.1f, 0f) ;
-                Head.transform.localScale = new Vector3(Head.transform.localScale.x, Head.transform.localScale.y * 0.99f, Head.transform.localScale.z);
+                Head.transform.localScale = new Vector3(Head.transform.localScale.x * 0.99f, Head.transform.localScale.y , Head.transform.localScale.z);
 
                 new WaitForSeconds(1.0f);
             }
@@ -102,6 +102,8 @@ public class DragArea : MonoBehaviour
             //new WaitForSeconds(0.05f);
 
         }
+
+        if (nebari < 0f) { nebari = 0.0f;  }
 
     }
 
