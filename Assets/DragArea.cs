@@ -48,31 +48,32 @@ public class DragArea : MonoBehaviour
         //Body.transform.localScale   = new Vector3(0.0f, displayheight, 0f);
         //Body.transform.position = new Vector3(0.0f, displayheight / 2.0f, 0f) + BodyStart;
 
+        float displayoffset = 2.0f;
+        if (displayheight < 10.0f)
+        {
+            displayoffset = 2.0f - ((float)System.Math.Pow(10.0 - (double)displayheight, 2.0) / 50.0f);
+        }
 
-        float displayoffset = ((float)System.Math.Pow(10.0 - (double)displayheight, 2.0) / 20.0f);
+        displayoffset = 0.0f;
 
         GameObject Head = GameObject.Find("Head");
-        Head.transform.position = new Vector3(0.0f, displayheight, 0f) + HeadStart;
+        Head.transform.position = new Vector3(0.0f, displayoffset, 0f) + HeadStart;
 
         GameObject Ground = GameObject.Find("Ground");
-        Ground.transform.position = GroundStart + new Vector3(0,-displayoffset, 0);
+        Ground.transform.position = GroundStart + new Vector3(0,displayoffset - displayheight, 0);
+        GameObject Leg = GameObject.Find("Leg");
+        Leg.transform.position = LegStart + new Vector3(0, displayoffset - displayheight, 0);
+
+        float GettingCutRatio;
+        GettingCutRatio = 0.0f;
+        float BodyPartSize;
+
+        GameObject Body = GameObject.Find("Body_d");
+        BodyPartSize = (1.0f - GettingCutRatio) * 0.3f;
+        Body.transform.position = BodyStart + new Vector3(0,  (displayoffset - displayheight) / 2.0f , 0);
+        Body.transform.localScale = new Vector3(Body.transform.localScale.x, displayheight / 2.0f * 0.35f, Body.transform.localScale.z);
 
 
-        //if (height < 10.0f)
-        //{
-        //    // Move ground
-        //    GameObject Ground = GameObject.Find("Ground");
-        //    Ground.transform.position = GroundStart + new Vector3(0,-height,0);
-        //    //Move Leg
-        //    GameObject Leg = GameObject.Find("Leg");
-        //    Leg.transform.position = LegStart + new Vector3(0, -height, 0);
-        //    // Move body and Strech
-        //    GameObject Body = GameObject.Find("Body");
-        //    Body.transform.position = BodyStart + new Vector3(0, -height/2.0f, 0);
-        //    Body.transform.localScale = new Vector3(0.7f,height/2.0f + 0.2f,0f);
-
-
-        //}
     }
 
     void OnGUI()
@@ -94,7 +95,7 @@ public class DragArea : MonoBehaviour
     public void OnMouseUp()
     {
         endPosition = Input.mousePosition;
-        accelaration += (((float)endPosition.y - (float)startPosition.y) / DragTime)/1000f;
+        accelaration += (((float)endPosition.y - (float)startPosition.y) / DragTime)/3000f;
         DragTimeDisplay = DragTime;
     }
 
