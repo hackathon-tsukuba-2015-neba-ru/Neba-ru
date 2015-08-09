@@ -190,6 +190,8 @@ GameObject:
   - 4: {fileID: 407049679}
   - 212: {fileID: 407049678}
   - 61: {fileID: 407049680}
+  - 61: {fileID: 407049682}
+  - 61: {fileID: 407049681}
   m_Layer: 0
   m_Name: Dish
   m_TagString: Untagged
@@ -245,9 +247,35 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: .0814839825, y: -.814870417}
   serializedVersion: 2
-  m_Size: {x: .159999996, y: .100000001}
+  m_Size: {x: 10.3981562, y: .999998391}
+--- !u!61 &407049681
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 407049677}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 4.99786568, y: -.325947493}
+  serializedVersion: 2
+  m_Size: {x: 1.72536242, y: 2.34810424}
+--- !u!61 &407049682
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 407049677}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: -5.13368368, y: -.353110194}
+  serializedVersion: 2
+  m_Size: {x: 1.88832355, y: 2.2937789}
 --- !u!1 &433823463
 GameObject:
   m_ObjectHideFlags: 0
