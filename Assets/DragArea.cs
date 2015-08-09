@@ -5,6 +5,7 @@ public class DragArea : MonoBehaviour
 {
 
     public static float nebari;
+    public GameObject resultPrefab;
 
     Vector3 startPosition;
     Vector3 endPosition;
@@ -53,7 +54,7 @@ public class DragArea : MonoBehaviour
         {
             displayoffset = 2.0f - ((float)System.Math.Pow(10.0 - (double)displayheight, 2.0) / 50.0f);
         }
-        
+
 
         GameObject Head = GameObject.Find("Head");
         Head.transform.position = new Vector3(0.0f, displayoffset, 0f) + HeadStart;
@@ -65,7 +66,7 @@ public class DragArea : MonoBehaviour
 
         float GettingCutRatio;
         GettingCutRatio = 0.0f;
-        
+
 
         GameObject Body_d = GameObject.Find("Body_d");
         float BodydPartSize = (1.0f - GettingCutRatio) * 0.3f * displayheight / 2.0f;
@@ -97,6 +98,8 @@ public class DragArea : MonoBehaviour
 
                 new WaitForSeconds(1.0f);
             }
+
+            Instantiate(resultPrefab, new Vector3(0, 0, 0), Quaternion.identity);
             // プレハブからインスタンスを生成
             //Instantiate(prefab, new Vector3(Random.Range(-0.5f, 0.5f), 6 + Random.Range(0f, 0.1f), 0), Quaternion.identity);
             //new WaitForSeconds(0.05f);
@@ -111,7 +114,7 @@ public class DragArea : MonoBehaviour
     {
         GUI.Label(new Rect(20, 20, 100, 50), "Start : "  + startPosition.x.ToString() + "," + startPosition.y.ToString());
         GUI.Label(new Rect(20, 40, 100, 50), "End   : " + endPosition.x.ToString() + "," + endPosition.y.ToString());
-        
+
         GUI.Label(new Rect(20, 60, 100, 50), "Accel   : " + accelaration.ToString());
         GUI.Label(new Rect(20, 80, 100, 50), "Nebari  : " + nebari.ToString());
     }
