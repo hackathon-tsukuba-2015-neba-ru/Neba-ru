@@ -43,17 +43,17 @@ public class DragArea : MonoBehaviour
 
         float displayheight = (float)System.Math.Pow((double)height, 1.5);
 
-        GameObject Body = GameObject.Find("Body");
-        Body.transform.localScale   = new Vector3(0.0f, displayheight, 0f);
-        Body.transform.position = new Vector3(0.0f, displayheight / 2.0f, 0f) + BodyStart;
+        //GameObject Body = GameObject.Find("Body");
+        //Body.transform.localScale   = new Vector3(0.0f, displayheight, 0f);
+        //Body.transform.position = new Vector3(0.0f, displayheight / 2.0f, 0f) + BodyStart;
 
         GameObject Head = GameObject.Find("Head");
         Head.transform.position = new Vector3(0.0f, displayheight, 0f) + HeadStart;
 
         float displayoffset = displayheight*2.0f + 5.0f;
-        if (height < 10.0f)
+        if (displayheight < 10.0f)
         {
-            displayoffset -= ( (float)System.Math.Pow(10.0 - (double)height, 2.0) / 20.0f);
+            displayoffset -= ( (float)System.Math.Pow(10.0 - (double)displayheight, 2.0) / 20.0f);
         }
 
         GameObject Ground = GameObject.Find("Ground");
