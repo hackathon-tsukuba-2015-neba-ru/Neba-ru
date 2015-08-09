@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour {
 	void Start () {
 
         // 納豆を生成
-        for (int i = 0; i < 32; i++)
+        for (int i = 0; i < 64; i++)
         {
             // プレハブからインスタンスを生成
             Instantiate(prefab, new Vector3(Random.Range(-0.5f,0.5f),6 + Random.Range(0f,0.1f),0), Quaternion.identity);
