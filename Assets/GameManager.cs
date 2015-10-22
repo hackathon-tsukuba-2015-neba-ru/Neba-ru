@@ -1,27 +1,38 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+using UnityEngine.UI;
+
+
 public class GameManager : MonoBehaviour {
 
-    public GameObject prefab;
 	Vector3 startPosition;
 	Vector3 endPosition;
 
+    public static bool InGame;
+
 	// Use this for initialization
 	void Start () {
-
-        // 納豆を生成
-        for (int i = 0; i < 64; i++)
-        {
-            // プレハブからインスタンスを生成
-            Instantiate(prefab, new Vector3(Random.Range(-0.5f,0.5f),6 + Random.Range(0f,0.1f),0), Quaternion.identity);
-            new WaitForSeconds(0.05f);
-        }
+        InGame = false;
 
 }
 
 // Update is called once per frame
-void Update () {
+void Update () 
+    {
+        // エスケープキー取得（Androidのバックボタン）
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            // 押されていればアプリケーション終了
+            Application.Quit();
+            return;
+        }
+
+    
+        //ゲーム中でなければなにもしない
+        if (InGame == false ) 
+        { return; }
+ 
 		// comment
         // comment by windows
 		if (Input.touchCount > 0) {
@@ -40,11 +51,11 @@ void Update () {
 
 			}
 		}
+
+
 	}
 
 	void OnGUI() {
-		GUI.Label(new Rect(20, 20, 100, 50), endPosition.x.ToString());
-		GUI.Label(new Rect(20, 40, 100, 50), endPosition.y.ToString());
 
 		float adjustedDisplayHeight = DragArea.displayheight;
 		string meterLabel = "cm";
@@ -58,6 +69,9 @@ void Update () {
 				meterLabel = "km";
 			}
 		}
-		GUI.Label(new Rect(20, 160, 100, 50), adjustedDisplayHeight.ToString() + meterLabel);
+
+        Text  ScoreDisp = GameObject.Find("Score/Text").GetComponent<Text>();
+        ScoreDisp.text = adjustedDisplayHeight.ToString("0.00") + meterLabel;
+//		GUI.Label(new Rect(0, 0, (float)Screen.width , (float)Screen.height * 0.1f), adjustedDisplayHeight.ToString("0.0") + meterLabel);
 	}
 }

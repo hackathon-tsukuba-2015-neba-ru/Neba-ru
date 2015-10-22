@@ -28,6 +28,12 @@ public class nattou : MonoBehaviour
         Vector2 CurrentPosition = Input.mousePosition;
 
         GetComponent<Rigidbody2D>().AddForce(CurrentPosition - StartPosition,ForceMode2D.Impulse );
-        DragArea.nebari += 1.0f; //ほんとは混ぜてる勢いを足したい
+        DragArea.nebari += Time.deltaTime * 60; //ほんとは混ぜてる勢いを足したい
+
+        //ネチャネチャ音
+        GameObject NechaSE = GameObject.Find("Necha");
+        NechaSE.GetComponent<AudioSource>().volume = 0.6f;
+        NechaSE.GetComponent<AudioSource>().Play();
+
     }
 }
