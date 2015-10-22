@@ -436,7 +436,7 @@ public class DragArea : MonoBehaviour
 
         TotalGameTime += Time.deltaTime;
         //nebari -= (0.05f + TotalGameTime * 0.0002f);
-        nebari -= (Time.deltaTime * 5.0f + TotalGameTime * Time.deltaTime *  0.02f);
+        nebari -= (Time.deltaTime * 4.0f + TotalGameTime * Time.deltaTime *  0.03f);
         if (nebari > 100f) { nebari = 100.0f; }
         if (nebari < 0f && accelaration>0.0f)
         {
@@ -467,8 +467,8 @@ public class DragArea : MonoBehaviour
         //GUI.Label(new Rect(0, (int)(Screen.height * 0.0), Screen.width , (int)(Screen.height*0.1)), "Start : "  + startPosition.x.ToString() + "," + startPosition.y.ToString());
         //GUI.Label(new Rect(0, (int)(Screen.height * 0.1), Screen.width, (int)(Screen.height * 0.1)), "End   : " + endPosition.x.ToString() + "," + endPosition.y.ToString());
 
-        GUI.Label(new Rect(0, (int)(Screen.height * 0.2), Screen.width, (int)(Screen.height * 0.1)), "Accel   : " + accelaration.ToString());
-        GUI.Label(new Rect(0, (int)(Screen.height * 0.3), Screen.width , (int)(Screen.height*0.1)), "Nebari  : " + nebari.ToString());
+        //GUI.Label(new Rect(0, (int)(Screen.height * 0.2), Screen.width, (int)(Screen.height * 0.1)), "Accel   : " + accelaration.ToString());
+        //GUI.Label(new Rect(0, (int)(Screen.height * 0.3), Screen.width , (int)(Screen.height*0.1)), "Nebari  : " + nebari.ToString());
     }
 
 
